@@ -1,5 +1,7 @@
 # ESP8266 Temperature Monitor
-Using the ESP8266 and a DHT22 or DHT11 we can log temperatures by MQTT or directly view the temperatures from the esp through a web browser.
+Using the ESP8266 and a DHT22 or DHT11 we can log temperatures by MQTT and/or directly view the temperatures from the esp through a web browser.
+
+The web interface is based on bootstrap but due to the limited space on the esp the css, js and fonts need to be hosted on a seperate server
 
 ## Setup:
 This setup requires a MQTT Broker and a Web server ideally on the same machine.
@@ -18,4 +20,4 @@ Setup of the broker will not be covered here
 Adjust the house_temp.ino file to give the device a name and set your wifi said and password
 
 
-Once set from a mDNS compatible device deiveName.local will load the web interface
+Once set from a mDNS compatible device ESPNAME.local will load the web interface

@@ -1,3 +1,11 @@
+/*
+ * House temperature monitor
+ * Author: Joshua Parker
+ * 
+ * Make sure to edit the ssid, password, ESPNAME and mqtt_server values 
+ * before flashing to your esp8266
+ */
+
 #include <ESP8266WiFi.h>
 #include <ESP8266mDNS.h>
 #include <WiFiClient.h>
@@ -13,7 +21,7 @@ const char* password = "PASSWORD";
 #define ESPNAME "Joshs-Room"
 #define topic_path "home/indoor/"
 
-#define mqtt_server "192.168.1.193"
+#define mqtt_server "SERVER IP / NAME"
 #define humidity_topic topic_path ESPNAME "/humidity"
 #define temperature_topic topic_path ESPNAME "/temperature"
 #define heatindex_topic topic_path ESPNAME "/heatindex"
