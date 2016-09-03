@@ -15,13 +15,18 @@
 #include <ESP8266WebServer.h>
 
 #define TEMPERATURE_IN_F false // changing to true gives temperature values in fahrenheit
+#define MQTT_AUTH        false // changing to true enables authentication for mqtt (make sure to set correct username and password)
 
 const char* ssid = "NETWORK-SSID";
 const char* password = "PASSWORD";
+
 #define ESPNAME "Joshs-Room"
 #define topic_path "home/indoor/"
 
 #define mqtt_server "SERVER IP / NAME"
+#define mqtt_username "MQTT_USERNAME"   // only needs to be changed if MQTT_AUTH is true
+#define mqtt_password "MQTT_PASSWORD"   // here also
+
 #define humidity_topic topic_path ESPNAME "/humidity"
 #define temperature_topic topic_path ESPNAME "/temperature"
 #define heatindex_topic topic_path ESPNAME "/heatindex"
@@ -277,7 +282,9 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect(ESPNAME)) {
+    if (!MQTT_AUTH && client.connect(ESPNAME)) {
+      Serial.println("connected");
+    } else if (MQTT_AUTH && client.connect(ESPNAME, mqtt_username, mqtt_password)) {
       Serial.println("connected");
     } else {
       Serial.println("failed, rc=");
