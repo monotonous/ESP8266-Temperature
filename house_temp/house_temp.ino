@@ -2,7 +2,7 @@
  * House temperature monitor
  * Author: Joshua Parker
  * 
- * Make sure to edit the ssid, password, ESPNAME and mqtt_*** values 
+ * Make sure to edit the ssid, password, ESPNAME and mqtt_*** values
  * before flashing to your esp8266
  */
 
@@ -100,8 +100,8 @@ class Module {
 
 class WebPage {
   // REUSABLE HTML ELEMENTS
-  String htmlTitle = "";//"Temperature Sensor";
-  String serverURL = "http://192.168.1.193/esp/";
+  String htmlTitle = "";
+  String serverURL = "http://some.address/esp/";                  // change to location of your web server containing required css and js files
   String cssBootStrap = serverURL + "css/bootstrap.min.css";
   String cssScrollingNav = serverURL + "css/scrolling-nav.css";
   String jsHtml5shiv = "html5shiv.js";
