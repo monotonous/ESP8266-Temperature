@@ -2,7 +2,7 @@
  * House temperature monitor
  * Author: Joshua Parker
  * 
- * Make sure to edit the ssid, password, ESPNAME and mqtt_server values 
+ * Make sure to edit the ssid, password, ESPNAME and mqtt_*** values 
  * before flashing to your esp8266
  */
 
@@ -15,15 +15,16 @@
 #include <ESP8266WebServer.h>
 
 #define TEMPERATURE_IN_F false // changing to true gives temperature values in fahrenheit
-#define MQTT_AUTH        false // changing to true enables authentication for mqtt (make sure to set correct username and password)
+#define MQTT_AUTH        true  // changing to false disables authentication for mqtt (make sure to set correct username and password when enabled)
 
 const char* ssid = "NETWORK-SSID";
 const char* password = "PASSWORD";
 
-#define ESPNAME "Joshs-Room"
-#define topic_path "home/indoor/"
+#define ESPNAME "ESP8266"
+#define topic_path "demo/"    // when changing topic path keep the / at the end of the topic name 
 
 #define mqtt_server "SERVER IP / NAME"
+#define mqtt_port 1883                  // only needs to be changed if using custom port
 #define mqtt_username "MQTT_USERNAME"   // only needs to be changed if MQTT_AUTH is true
 #define mqtt_password "MQTT_PASSWORD"   // here also
 
@@ -285,7 +286,7 @@ void reconnect() {
     if (!MQTT_AUTH && client.connect(ESPNAME)) {
       Serial.println("connected");
     } else if (MQTT_AUTH && client.connect(ESPNAME, mqtt_username, mqtt_password)) {
-      Serial.println("connected");
+      Serial.println("connected using auth");
     } else {
       Serial.println("failed, rc=");
       Serial.print(client.state());
@@ -369,7 +370,7 @@ void setup() {
   server.on("/sys", handleSystem);
   
   // start mqtt
-  client.setServer(mqtt_server, 1883);
+  client.setServer(mqtt_server, mqtt_port);
 
   // Start TCP (HTTP) server
   server.begin();
