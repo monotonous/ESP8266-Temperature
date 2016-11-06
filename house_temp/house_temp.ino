@@ -67,6 +67,7 @@ class Module {
       heatIndex = 0.0;
       roomName = String(ESPNAME);
       roomName.replace("s-", "'s ");
+      roomName.replace("-", " ");
     }
 
   String toString(){
@@ -138,7 +139,6 @@ class WebPage {
     String makeJSCall(String id, String delayFor){
       return nl + "$(document).ready(function() {"
            + makeJSLoad(id)
-//           + "$.ajaxSetup({ cache: false });"
            + "setInterval(function() {"
            + makeJSLoad(id)
            + "}, " + delayFor + ");"
@@ -163,7 +163,6 @@ class WebPage {
                   + nl + "<script type=\"text/javascript\">// <![CDATA["
                   + nl + "$.ajaxSetup({cache:true});"
                   + makeJSCall("sensor", "120000")
-//                  + makeJSCall("door", "1000")
                   + makeJSCall("sys", "30000")
                   + nl + "// ]]>"
                   + nl + "</script>"
@@ -205,6 +204,7 @@ class WebPage {
       webString = "";
       roomName = String(ESPNAME);
       roomName.replace("s-", "'s ");
+      roomName.replace("-", " ");
       htmlTitle = roomName + " Temperature";
     }
   
